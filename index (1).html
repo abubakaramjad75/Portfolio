@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Abubakar Amjad — Graduate Web Developer</title>
+<meta name="description" content="Portfolio of Muhammad Abubakar Amjad, Computing Science student and Graduate Web Developer specialising in responsive, accessible front-end builds.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F7F9;
+    --surface:#FFFFFF;
+    --ink:#14171C;
+    --ink-soft:#565D6B;
+    --ink-faint:#8A90A0;
+    --line:#E1E4EA;
+    --accent-blue:#2F5DFF;
+    --accent-blue-dim:#EEF1FF;
+    --accent-green:#1B8A5A;
+    --accent-green-dim:#E9F6EF;
+    --accent-amber:#B98900;
+    --code-bg:#12151C;
+    --code-bg-raised:#1B1F29;
+    --code-text:#D7DEE8;
+    --code-line:#2A2F3B;
+    --radius:10px;
+    --maxw:1120px;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:var(--accent-blue); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  :focus-visible{
+    outline:2px solid var(--accent-blue);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+
+  h1,h2,h3{font-family:var(--font-display); margin:0; letter-spacing:-0.01em;}
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--accent-blue);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:0 0 14px;
+    font-weight:500;
+  }
+  .eyebrow::before{content:"//"; color:var(--ink-faint);}
+
+  /* ---------- Browser-chrome nav ---------- */
+  .browser-shell{
+    position:sticky;
+    top:14px;
+    z-index:50;
+    max-width:var(--maxw);
+    margin:14px auto 0;
+    padding:0 28px;
+  }
+  .chrome{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:0 8px 24px rgba(20,23,28,0.06);
+    overflow:hidden;
+  }
+  .chrome-tabbar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 14px;
+    border-bottom:1px solid var(--line);
+    background:#FBFBFC;
+  }
+  .dots{display:flex; gap:6px; flex-shrink:0;}
+  .dots span{width:10px; height:10px; border-radius:50%; display:block;}
+  .dots span:nth-child(1){background:#F4564B;}
+  .dots span:nth-child(2){background:#F2B01E;}
+  .dots span:nth-child(3){background:#2AC46D;}
+  .addressbar{
+    flex:1;
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:7px;
+    padding:6px 12px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .addressbar b{color:var(--ink); font-weight:500;}
+  .chrome-nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 16px;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .chrome-nav .brand{
+    font-family:var(--font-mono);
+    font-weight:600;
+    font-size:14px;
+    color:var(--ink);
+  }
+  .chrome-nav .brand .dot{color:var(--accent-blue);}
+  .tabs{
+    display:flex;
+    gap:2px;
+    font-family:var(--font-mono);
+    font-size:13px;
+  }
+  .tabs a{
+    color:var(--ink-soft);
+    padding:8px 12px;
+    border-radius:7px;
+  }
+  .tabs a:hover{background:var(--accent-blue-dim); color:var(--accent-blue); text-decoration:none;}
+  .tabs a.active{color:var(--accent-blue); background:var(--accent-blue-dim);}
+  .cv-btn{
+    font-family:var(--font-mono);
+    font-size:13px;
+    font-weight:500;
+    background:var(--ink);
+    color:#fff !important;
+    padding:8px 14px;
+    border-radius:7px;
+    text-decoration:none !important;
+    white-space:nowrap;
+  }
+  .cv-btn:hover{background:var(--accent-blue);}
+
+  @media (max-width: 720px){
+    .tabs{order:3; width:100%; overflow-x:auto; padding-top:4px; border-top:1px solid var(--line);}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:76px 0 60px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media (max-width: 900px){
+    .hero-grid{grid-template-columns:1fr; gap:40px;}
+    .hero{padding-top:48px;}
+  }
+  .role-tag{
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--accent-green);
+    background:var(--accent-green-dim);
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:6px;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(34px, 5vw, 52px);
+    line-height:1.08;
+    margin-bottom:10px;
+  }
+  .hero .subtitle{
+    font-family:var(--font-display);
+    font-size:clamp(19px, 2.4vw, 24px);
+    color:var(--ink-soft);
+    font-weight:500;
+    margin-bottom:22px;
+  }
+  .hero p.lede{
+    font-size:16.5px;
+    color:var(--ink-soft);
+    max-width:52ch;
+    margin-bottom:30px;
+  }
+  .hero-ctas{display:flex; gap:12px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--font-mono);
+    font-size:14px;
+    font-weight:500;
+    padding:12px 20px;
+    border-radius:8px;
+    text-decoration:none !important;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--accent-blue); color:#fff !important;}
+  .btn-primary:hover{background:#1E46E0;}
+  .btn-ghost{background:transparent; color:var(--ink) !important; border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--ink);}
+
+  /* terminal panel */
+  .terminal{
+    background:var(--code-bg);
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 20px 44px rgba(18,21,28,0.28);
+    border:1px solid var(--code-line);
+  }
+  .terminal-bar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 14px;
+    background:var(--code-bg-raised);
+    border-bottom:1px solid var(--code-line);
+  }
+  .terminal-bar span{width:10px;height:10px;border-radius:50%;}
+  .terminal-bar span:nth-child(1){background:#F4564B;}
+  .terminal-bar span:nth-child(2){background:#F2B01E;}
+  .terminal-bar span:nth-child(3){background:#2AC46D;}
+  .terminal-bar .tlabel{
+    margin-left:8px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:#7C8494;
+  }
+  .terminal-body{
+    padding:22px 20px 26px;
+    font-family:var(--font-mono);
+    font-size:13.5px;
+    color:var(--code-text);
+    min-height:230px;
+  }
+  .terminal-body .line{margin-bottom:6px; white-space:pre-wrap; word-break:break-word;}
+  .terminal-body .prompt{color:#2AC46D;}
+  .terminal-body .out{color:#9AA4B8;}
+  .terminal-body .accent{color:#6E9BFF;}
+  .cursor{
+    display:inline-block;
+    width:7px; height:15px;
+    background:#D7DEE8;
+    vertical-align:text-bottom;
+    animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  /* ---------- Sections ---------- */
+  section{padding:72px 0;}
+  .section-head{max-width:64ch; margin-bottom:40px;}
+  .section-head h2{font-size:clamp(26px,3.4vw,34px);}
+  .section-head p{color:var(--ink-soft); margin-top:12px; font-size:16px;}
+
+  #about{background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  @media (max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{color:var(--ink-soft); margin:0 0 16px; font-size:16px;}
+  .about-grid p:last-child{margin-bottom:0;}
+  .fact-list{
+    list-style:none; margin:0; padding:0;
+    display:grid; gap:14px;
+  }
+  .fact-list li{
+    display:flex; justify-content:space-between; gap:16px;
+    padding:14px 16px;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:8px;
+    font-size:14.5px;
+  }
+  .fact-list .k{font-family:var(--font-mono); color:var(--ink-faint);}
+  .fact-list .v{font-weight:500; text-align:right;}
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:32px;
+  }
+  @media (max-width:860px){.skills-grid{grid-template-columns:1fr;}}
+  .panel{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .panel-head{
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--ink-soft);
+    padding:12px 18px;
+    border-bottom:1px solid var(--line);
+    background:#FBFBFC;
+  }
+  .code-block{
+    background:var(--code-bg);
+    color:var(--code-text);
+    font-family:var(--font-mono);
+    font-size:13.5px;
+    padding:20px 20px 22px;
+    line-height:1.85;
+    overflow-x:auto;
+  }
+  .code-block .k{color:#6E9BFF;}
+  .code-block .s{color:#8FD19E;}
+  .code-block .c{color:#7C8494;}
+
+  .soft-list{list-style:none; margin:0; padding:18px;}
+  .soft-list li{
+    padding:16px;
+    border-bottom:1px solid var(--line);
+  }
+  .soft-list li:last-child{border-bottom:none;}
+  .soft-list .stitle{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:15.5px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:6px;
+  }
+  .soft-list .stitle::before{
+    content:"";
+    width:7px; height:7px; border-radius:50%;
+    background:var(--accent-green);
+    flex-shrink:0;
+  }
+  .soft-list p{margin:0; color:var(--ink-soft); font-size:14.5px;}
+
+  /* ---------- Projects ---------- */
+  .project-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:28px;
+  }
+  .project-card:last-child{margin-bottom:0;}
+  .proj-bar{
+    display:flex; align-items:center; gap:10px;
+    padding:10px 14px;
+    background:#FBFBFC;
+    border-bottom:1px solid var(--line);
+  }
+  .proj-bar .dots span{width:8px;height:8px;}
+  .proj-bar .url{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:5px 10px;
+    flex:1;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .proj-body{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:0;
+  }
+  @media (max-width:760px){.proj-body{grid-template-columns:1fr;}}
+  .proj-thumb{
+    background:linear-gradient(160deg, var(--tc1,#2F5DFF), var(--tc2,#12151C));
+    min-height:180px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    color:#fff;
+  }
+  .proj-thumb .mark{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:26px;
+    line-height:1;
+  }
+  .proj-thumb .tag{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    opacity:0.85;
+  }
+  .proj-content{padding:24px 26px;}
+  .proj-content h3{font-size:20px; margin-bottom:6px;}
+  .proj-content .proj-link{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+  }
+  .proj-content .overview{
+    color:var(--ink-soft);
+    margin:14px 0 18px;
+    font-size:15px;
+  }
+  .proj-cols{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  @media (max-width:600px){.proj-cols{grid-template-columns:1fr;}}
+  .proj-cols h4{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-faint);
+    margin:0 0 10px;
+  }
+  .chip-list{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px;}
+  .chip{
+    font-family:var(--font-mono);
+    font-size:12px;
+    background:var(--accent-blue-dim);
+    color:var(--accent-blue);
+    padding:4px 9px;
+    border-radius:5px;
+  }
+  .plain-list{list-style:none; margin:0; padding:0; font-size:14px; color:var(--ink-soft);}
+  .plain-list li{padding:3px 0; display:flex; gap:8px;}
+  .plain-list li::before{content:"→"; color:var(--accent-green); flex-shrink:0;}
+  .challenge{
+    margin-top:18px;
+    padding-top:18px;
+    border-top:1px dashed var(--line);
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  .challenge b{color:var(--ink); font-weight:600;}
+
+  /* ---------- Contact ---------- */
+  #contact{background:var(--code-bg); color:var(--code-text); border-top:1px solid var(--code-line);}
+  #contact .eyebrow{color:#6E9BFF;}
+  #contact .eyebrow::before{color:#5A6072;}
+  #contact .section-head h2{color:#fff;}
+  #contact .section-head p{color:#9AA4B8;}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:16px;
+  }
+  @media (max-width:820px){.contact-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:480px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-card{
+    background:var(--code-bg-raised);
+    border:1px solid var(--code-line);
+    border-radius:10px;
+    padding:20px;
+    display:block;
+    text-decoration:none !important;
+  }
+  .contact-card .label{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:#7C8494;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    margin-bottom:8px;
+  }
+  .contact-card .value{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:15px;
+    color:#EAEDF3 !important;
+    word-break:break-word;
+  }
+  .contact-card:hover{border-color:var(--accent-blue);}
+  .contact-card:hover .value{color:#6E9BFF !important;}
+
+  footer{
+    padding:26px 0 40px;
+    text-align:center;
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:#5A6072;
+  }
+</style>
+</head>
+<body>
+
+<div class="browser-shell">
+  <div class="chrome">
+    <div class="chrome-tabbar">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="addressbar" id="addressbar"><b>abubakaramjad.dev</b>/home</div>
+    </div>
+    <nav class="chrome-nav" aria-label="Primary">
+      <div class="brand">amjad<span class="dot">.</span>dev</div>
+      <div class="tabs">
+        <a href="#home" class="active" data-section="home">Home</a>
+        <a href="#about" data-section="about">About</a>
+        <a href="#skills" data-section="skills">Skills</a>
+        <a href="#projects" data-section="projects">Projects</a>
+        <a href="#contact" data-section="contact">Contact</a>
+      </div>
+      <a class="cv-btn" href="Muhammad_Abubakar_Amjad_CV.pdf" download>Download CV ↓</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+  <section id="home" class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="role-tag">● available for graduate roles</span>
+        <h1>Muhammad Abubakar<br>Amjad</h1>
+        <p class="subtitle">Graduate Web Developer</p>
+        <p class="lede">I'm a Computing Science student at the University of Dundee with hands-on experience building responsive business websites. I enjoy turning ideas into clean, user-friendly interfaces with HTML, CSS and JavaScript — and I'm looking for a graduate role where I can keep growing as a developer.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="Muhammad_Abubakar_Amjad_CV.pdf" download>Download CV</a>
+          <a class="btn btn-ghost" href="#projects">View projects</a>
+        </div>
+      </div>
+      <div class="terminal" aria-hidden="false">
+        <div class="terminal-bar">
+          <span></span><span></span><span></span>
+          <span class="tlabel">zsh — whoami.sh</span>
+        </div>
+        <div class="terminal-body" id="termBody"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">about</p>
+        <h2>Turning coursework into real, shipped websites</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>I'm a passionate Computing Science student with practical experience in front-end web development. Throughout my studies and independent work, I've developed responsive websites for business clients — focusing on clean design, accessibility and usability.</p>
+          <p>I enjoy learning modern web technologies and continuously improving my development skills. My goal is to become a professional web developer, creating intuitive and accessible web applications that people genuinely enjoy using.</p>
+        </div>
+        <ul class="fact-list">
+          <li><span class="k">role</span><span class="v">Graduate Web Developer</span></li>
+          <li><span class="k">education</span><span class="v">BSc Computing Science, University of Dundee</span></li>
+          <li><span class="k">focus</span><span class="v">Responsive, accessible front-end builds</span></li>
+          <li><span class="k">stack</span><span class="v">HTML · CSS · JavaScript · Bootstrap</span></li>
+          <li><span class="k">status</span><span class="v">Seeking graduate opportunities</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">skills</p>
+        <h2>Technical &amp; transferable skills</h2>
+        <p>What I build with, and how I work with people while I build it.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="panel">
+          <div class="panel-head">skills.json — technical</div>
+          <pre class="code-block"><span class="c">// core stack used across every client project</span>
+<span class="k">const</span> skills = {
+  <span class="s">"markup"</span>: [<span class="s">"HTML5"</span>],
+  <span class="s">"styling"</span>: [<span class="s">"CSS3"</span>, <span class="s">"Bootstrap"</span>, <span class="s">"Responsive Design"</span>],
+  <span class="s">"scripting"</span>: [<span class="s">"JavaScript"</span>],
+  <span class="s">"tooling"</span>: [<span class="s">"Git"</span>, <span class="s">"GitHub"</span>, <span class="s">"VS Code"</span>],
+  <span class="s">"practices"</span>: [<span class="s">"Basic SEO"</span>, <span class="s">"Cross-browser testing"</span>]
+};</pre>
+        </div>
+        <div class="panel">
+          <div class="panel-head">soft-skills.md — applied in practice</div>
+          <ul class="soft-list">
+            <li>
+              <div class="stitle">Communication</div>
+              <p>Worked directly with business clients to translate their requirements into concrete site features and layouts across all three projects.</p>
+            </li>
+            <li>
+              <div class="stitle">Teamwork</div>
+              <p>Coordinated with clients and stakeholders throughout each build, from initial brief to launch and ongoing maintenance.</p>
+            </li>
+            <li>
+              <div class="stitle">Problem solving</div>
+              <p>Debugged layout and compatibility issues across browsers and devices, adjusting CSS and JS until every page behaved consistently.</p>
+            </li>
+            <li>
+              <div class="stitle">Time management</div>
+              <p>Balanced multiple live client sites alongside a full-time Computing Science degree, keeping updates and fixes on schedule.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">projects</p>
+        <h2>Work samples</h2>
+        <p>Three live business websites I built and maintain, from layout to launch.</p>
+      </div>
+
+      <article class="project-card">
+        <div class="proj-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="url">https://autonicsengineering.com</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-thumb" style="--tc1:#2F5DFF; --tc2:#0E1220;">
+            <span class="mark">Ae</span>
+            <span class="tag">engineering / corporate</span>
+          </div>
+          <div class="proj-content">
+            <h3>Autonics Engineering</h3>
+            <a class="proj-link" href="https://autonicsengineering.com" target="_blank" rel="noopener">autonicsengineering.com ↗</a>
+            <p class="overview">Designed and developed a responsive business website showcasing engineering services, company information and contact details.</p>
+            <div class="proj-cols">
+              <div>
+                <h4>Technologies</h4>
+                <ul class="chip-list"><li class="chip">HTML</li><li class="chip">CSS</li><li class="chip">JavaScript</li></ul>
+              </div>
+              <div>
+                <h4>My contribution</h4>
+                <ul class="plain-list"><li>Developed responsive layouts</li><li>Improved navigation</li><li>Enhanced mobile compatibility</li><li>Ongoing maintenance</li></ul>
+              </div>
+              <div>
+                <h4>Role</h4>
+                <ul class="plain-list"><li>Front-end developer</li></ul>
+              </div>
+            </div>
+            <p class="challenge"><b>Challenge:</b> getting the layout to hold up across a wide spread of screen sizes for an industrial-services audience. I rebuilt the navigation and content grid with a mobile-first approach, testing on real devices to iron out compatibility issues.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="proj-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="url">https://alfasoft.com</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-thumb" style="--tc1:#1B8A5A; --tc2:#0E1220;">
+            <span class="mark">As</span>
+            <span class="tag">software / digital services</span>
+          </div>
+          <div class="proj-content">
+            <h3>Alfasoft</h3>
+            <a class="proj-link" href="https://alfasoft.com" target="_blank" rel="noopener">alfasoft.com ↗</a>
+            <p class="overview">Developed a professional website for a software company to present its digital services and business solutions.</p>
+            <div class="proj-cols">
+              <div>
+                <h4>Technologies</h4>
+                <ul class="chip-list"><li class="chip">HTML</li><li class="chip">CSS</li><li class="chip">JavaScript</li><li class="chip">Bootstrap</li></ul>
+              </div>
+              <div>
+                <h4>My contribution</h4>
+                <ul class="plain-list"><li>Responsive interface</li><li>Modern page layouts</li><li>UI improvements</li><li>Ongoing maintenance</li></ul>
+              </div>
+              <div>
+                <h4>Role</h4>
+                <ul class="plain-list"><li>Front-end developer</li></ul>
+              </div>
+            </div>
+            <p class="challenge"><b>Challenge:</b> presenting several distinct service lines without the page feeling cluttered. Using Bootstrap's grid system, I built modular page sections that stay legible on any screen and are easy to reorder as services change.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="proj-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="url">https://topqualityresource.com</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-thumb" style="--tc1:#B98900; --tc2:#0E1220;">
+            <span class="mark">TQ</span>
+            <span class="tag">corporate / services</span>
+          </div>
+          <div class="proj-content">
+            <h3>Top Quality Resource</h3>
+            <a class="proj-link" href="https://topqualityresource.com" target="_blank" rel="noopener">topqualityresource.com ↗</a>
+            <p class="overview">Developed a corporate website providing clear information about the company's business services.</p>
+            <div class="proj-cols">
+              <div>
+                <h4>Technologies</h4>
+                <ul class="chip-list"><li class="chip">HTML</li><li class="chip">CSS</li><li class="chip">JavaScript</li></ul>
+              </div>
+              <div>
+                <h4>My contribution</h4>
+                <ul class="plain-list"><li>Responsive design</li><li>Website updates</li><li>Content organisation</li><li>Cross-browser compatibility</li></ul>
+              </div>
+              <div>
+                <h4>Role</h4>
+                <ul class="plain-list"><li>Front-end developer</li></ul>
+              </div>
+            </div>
+            <p class="challenge"><b>Challenge:</b> the original content was dense and hard to scan. I restructured the information into clearer sections and tested rendering across major browsers to make sure formatting stayed consistent everywhere.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">contact</p>
+        <h2>Get in touch</h2>
+        <p>Open to graduate web developer roles — happy to chat about a project or opportunity.</p>
+      </div>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:2693174@dundee.ac.uk">
+          <div class="label">Email</div>
+          <div class="value">2693174@dundee.ac.uk</div>
+        </a>
+        <a class="contact-card" href="tel:+447594545895">
+          <div class="label">Phone</div>
+          <div class="value">07594 545895</div>
+        </a>
+        <a class="contact-card" href="https://github.com/abubakaramjad75" target="_blank" rel="noopener">
+          <div class="label">GitHub</div>
+          <div class="value">abubakaramjad75 ↗</div>
+        </a>
+        <a class="contact-card" href="https://www.linkedin.com/in/m-abubakar-amjad/" target="_blank" rel="noopener">
+          <div class="label">LinkedIn</div>
+          <div class="value">m-abubakar-amjad ↗</div>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>// built by Muhammad Abubakar Amjad — last updated 2026</footer>
+
+<script>
+  // Address bar + tab highlight follows scroll position
+  (function(){
+    var sections = ['home','about','skills','projects','contact'];
+    var addressbar = document.getElementById('addressbar');
+    var tabs = document.querySelectorAll('.tabs a');
+
+    function setActive(id){
+      addressbar.innerHTML = '<b>abubakaramjad.dev</b>/' + id;
+      tabs.forEach(function(t){
+        t.classList.toggle('active', t.dataset.section === id);
+      });
+    }
+
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          setActive(entry.target.id);
+        }
+      });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+
+    sections.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) observer.observe(el);
+    });
+  })();
+
+  // Typed terminal intro
+  (function(){
+    var body = document.getElementById('termBody');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var script = [
+      {type:'cmd', text:'whoami'},
+      {type:'out', text:'Muhammad Abubakar Amjad — Graduate Web Developer'},
+      {type:'cmd', text:'cat focus.txt'},
+      {type:'out', text:'Responsive, accessible front-end builds\\nHTML · CSS · JavaScript · Bootstrap'},
+      {type:'cmd', text:'ls projects/'},
+      {type:'out', text:'autonicsengineering.com   alfasoft.com   topqualityresource.com'},
+      {type:'cmd', text:'./status'},
+      {type:'out', text:'Open to graduate opportunities ✓', accent:true}
+    ];
+
+    if(reduce){
+      body.innerHTML = script.map(renderLine).join('');
+      return;
+    }
+
+    var i = 0;
+    function typeLine(){
+      if(i >= script.length){
+        var c = document.createElement('span');
+        c.className = 'cursor';
+        body.appendChild(c);
+        return;
+      }
+      var item = script[i];
+      var div = document.createElement('div');
+      div.className = 'line';
+      body.appendChild(div);
+
+      if(item.type === 'cmd'){
+        var prefix = '<span class="prompt">$</span> ';
+        var full = item.text;
+        var pos = 0;
+        var speed = 38;
+        (function tick(){
+          div.innerHTML = prefix + full.slice(0, pos);
+          pos++;
+          if(pos <= full.length){
+            setTimeout(tick, speed);
+          } else {
+            i++;
+            setTimeout(typeLine, 220);
+          }
+        })();
+      } else {
+        div.innerHTML = '<span class="' + (item.accent ? 'accent' : 'out') + '">' + item.text.replace(/\\n/g,'<br>') + '</span>';
+        i++;
+        setTimeout(typeLine, 320);
+      }
+    }
+    function renderLine(item){
+      if(item.type === 'cmd'){
+        return '<div class="line"><span class="prompt">$</span> ' + item.text + '</div>';
+      }
+      return '<div class="line"><span class="' + (item.accent ? 'accent':'out') + '">' + item.text.replace(/\n/g,'<br>') + '</span></div>';
+    }
+    typeLine();
+  })();
+</script>
+
+</body>
+</html>
